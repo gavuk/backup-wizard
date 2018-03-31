@@ -90,10 +90,9 @@ cmd_logger	/usr/bin/logger
 # e.g. alpha, beta, gamma, etc.         #
 #########################################
 
-retain	alpha	6
-retain	beta	7
-retain	gamma	4
-#retain	delta	3
+retain	daily	7
+retain	weekly	4
+retain	monthly	6
 
 ############################################
 #              GLOBAL OPTIONS              #
