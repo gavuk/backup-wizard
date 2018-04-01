@@ -150,7 +150,7 @@ function do_rsnapshot_mysql {
   ssh $user@$hostname "echo -e \"[Client]\nuser=$muser\npassword=$mpass\" >> ~/.my.cnf; chmod 0400 ~/.my.cnf; mkdir -p /var/db/dump/"
 
   # Write the line to the rsnapshot conf file
-  echo -e "backup_exec\tssh $user@$hostname \"mysqldump -A > /var/db/dump/$hostname.sql\"" >> etc/$hostname.conf
+  echo -e "backup_exec\tssh $user@$hostname \"mysqldump -A > /var/db/dump/databases.sql\"" >> etc/$hostname.conf
   echo -e "backup\t$user@$hostname:/var/db/dump/\t$hostname/" >> etc/$hostname.conf
 
 }
