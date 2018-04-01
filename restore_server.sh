@@ -32,7 +32,7 @@ function restore_files {
 
   # Copy file to the new server
   rsync -a "$dest.tar.gz" $dest:/
-  ssh $dest "nohup tar zxf /$dest.tar.gz"
+  ssh $dest "cd /; nohup tar zxf /$dest.tar.gz"
 }
 
 # Restore database
