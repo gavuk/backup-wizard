@@ -17,12 +17,6 @@ function usage {
   echo "$0 db /backups/weekly.0/db root@newserver"
 }
 
-# Check that the arguments have been set
-if [ "$backup" == "" -o "$dest" == "" ]
-then
-  usage
-fi
-
 # Restore files
 function restore_files {
   # Warning
