@@ -25,8 +25,34 @@ fi
 
 # Restore files
 function restore_files {
+  # Warning
+  read -p "This will overwrite the server $dest. This action cannot be undone, are you sure? (yes/no) " input
+  if [ "${input,,}" != "yes" ]
+  then
+    exit 0
+  fi
+
   # Zip the files up
-  tar cfz "$backup" "/tmp/$dest.tar.gz"
+  cd "$backup"
+  tar -czf "$dest.tar.gz" .
+
+  # Copy file to the new server
+  rsync -a "$dest.tar.gz" $dest:/
+  ssh $dest "nohup tar zxf /$dest.tar.gz"
+}
+
+# Restore database
+function restore_db {
+  # Warning
+  read -p "This will overwrite the server $dest. This action cannot be undone, are you sure? (yes/no) " input
+  if [ "${input,,}" != "yes" ]
+  then
+    exit 0
+  fi
+
+  # Copy over the sql file
+  rsync -a "$backup/var/db/dump/databases.sql" $dest:/tmp/
+  ssh $dest "nohup mysql -uroot -p < /tmp/databases.sql"
 }
 
 # Get the mode
