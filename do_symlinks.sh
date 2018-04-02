@@ -1,6 +1,8 @@
 #!/bin/bash
 
-. backups.conf
+# Get dirname
+thisdir=`dirname $0`
+. "$thisdir/backups.conf"
 
 # Remove existing symlinks
 rm -f $BACKUP_DIR/2*-*

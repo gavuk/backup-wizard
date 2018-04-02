@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # Get variables from conf file
-. ./backups.conf
+thisdir=`dirname $0`
+. "$thisdir/backups.conf"
 
 # Get args
 arg="$1"
