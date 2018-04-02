@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Get variables from conf file
-. backups.conf
+. ./backups.conf
 
 # Get args
 arg="$1"
