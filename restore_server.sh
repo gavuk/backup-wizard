@@ -46,9 +46,9 @@ function restore_db {
   fi
 
   # Copy over the sql file
-  rsync -a "$backup/var/db/dump/databases.sql" $dest:/tmp/
+  rsync -a "$backup/var/db/dump/*.sql" $dest:/tmp/
   read -p "MySQL password: " pass
-  ssh $dest "nohup mysql -uroot -p < /tmp/databases.sql"
+  ssh $dest "nohup mysql -uroot -p < /tmp/*.sql"
 }
 
 # Get the mode
