@@ -159,6 +159,7 @@ function do_rsnapshot_mysql {
   # Tidy up the exclude list
   mexclude=`echo $mexcludelist | sed 's/,exclude=$//g'`
   mexclude=`echo $mexclude | sed 's/,exclude=,//g'`
+  mexclude=`echo $mexclude | sed 's/^,//g'`
 
   # Write the .my.cnf file on the remote server
   ssh $user@$hostname "echo -e \"[Client]\nuser=$muser\npassword=$mpass\" >> ~/.my.cnf; chmod 0400 ~/.my.cnf; mkdir -p /var/db/dump/"
