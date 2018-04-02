@@ -151,7 +151,7 @@ function do_rsnapshot_mysql {
 
   # Write the line to the rsnapshot conf file
   echo -e "backup_exec\tssh $user@$hostname 'rm -f /var/db/dump/*; while read -r db; do mysqldump --skip-lock-tables \$db > /var/db/dump/\$db.sql; done<<<\"\`mysql -Ne \"show databases\" | grep -vxe \"information_schema\|sys\"\`\"'" >> etc/$hostname.conf
-  echo -e "backup\t$user@$hostname:/var/db/dump/\t$hostname/" >> etc/$hostname.conf
+  echo -e "backup\t$user@$hostname:/var/db/dump/*.sql\t$hostname/" >> etc/$hostname.conf
 
 }
 
