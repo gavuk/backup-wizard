@@ -150,7 +150,7 @@ function do_rsnapshot_mysql {
   mexcludedir="START"
 
   # Check if there's anything to exclude
-  while [ "m$excludedir" != "" ]
+  while [ "$mexcludedir" != "" ]
   do
     read -p "Enter a single database name to exclude from the backup. If you have no more databases to exclude then leave blank and press Enter: " mexcludedir
     mexcludelist="$mexcludelist,exclude=/var/db/dump/$mexcludedir.sql"
