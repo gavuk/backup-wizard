@@ -15,6 +15,7 @@ function usage {
   echo "For example:"
   echo "$0 files /backups/daily.0/web root@newserver"
   echo "$0 db /backups/weekly.0/db root@newserver"
+  exit 1
 }
 
 # Restore files
