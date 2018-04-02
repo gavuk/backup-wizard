@@ -18,7 +18,7 @@ function usage {
 }
 
 # Check the args were given
-if [ "$server" == "" ] || [ "$increment" == ""]
+if [ "$server" == "" ] || [ "$increment" == "" ]
 then
   usage
 fi
