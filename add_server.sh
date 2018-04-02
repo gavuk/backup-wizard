@@ -146,12 +146,26 @@ function do_rsnapshot_mysql {
     fi
   done
 
+  # This is so the while loop works
+  mexcludedir="START"
+
+  # Check if there's anything to exclude
+  while [ "m$excludedir" != "" ]
+  do
+    read -p "Enter a single database name to exclude from the backup. If you have no more databases to exclude then leave blank and press Enter: " mexcludedir
+    mexcludelist="$mexcludelist,exclude=/var/db/dump/$mexcludedir.sql"
+  done
+
+  # Tidy up the exclude list
+  mexclude=`echo $mexcludelist | sed 's/,exclude=$//g'`
+  mexclude=`echo $mexclude | sed 's/,exclude=,//g'
+
   # Write the .my.cnf file on the remote server
   ssh $user@$hostname "echo -e \"[Client]\nuser=$muser\npassword=$mpass\" >> ~/.my.cnf; chmod 0400 ~/.my.cnf; mkdir -p /var/db/dump/"
 
   # Write the line to the rsnapshot conf file
-  echo -e "backup_exec\tssh $user@$hostname 'rm -f /var/db/dump/*; while read -r db; do mysqldump --skip-lock-tables \$db > /var/db/dump/\$db.sql; done<<<\"\`mysql -Ne \"show databases\" | grep -vxe \"information_schema\|sys\"\`\"'" >> etc/$hostname.conf
-  echo -e "backup\t$user@$hostname:/var/db/dump/*.sql\t$hostname/" >> etc/$hostname.conf
+  echo -e "backup_exec\tssh $user@$hostname 'rm -f /var/db/dump/*; while read -r db; do mysqldump --skip-lock-tables --triggers --routines --events \$db > /var/db/dump/\$db.sql; done<<<\"\`mysql -Ne \"show databases\" | grep -vxe \"information_schema\|sys\"\`\"'" >> etc/$hostname.conf
+  echo -e "backup\t$user@$hostname:/var/db/dump/*.sql\t$hostname/\t$mexclude" >> etc/$hostname.conf
 
 }
 
