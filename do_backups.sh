@@ -4,6 +4,9 @@
 thisdir=`dirname $0`
 . "$thisdir/backups.conf"
 
+# Get the start time
+starttime=`date`
+
 # Get args
 arg="$1"
 
@@ -18,3 +21,12 @@ done<<<"`find $EXEC_DIR/etc/ -iname '*.conf' -type f`"
 
 # Run rsnapshot
 rsnapshot -c "$EXEC_DIR/rsnapshot.conf" $arg
+
+# Sort out the symlinks
+./do_symlinks.sh
+
+# Output some stats
+echo "Start time: $starttime"
+echo "End time:   `date`"
+echo ""
+du -h --max-depth=1 "$BACKUP_DIR/$arg.0/"
