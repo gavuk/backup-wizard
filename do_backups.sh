@@ -26,6 +26,7 @@ rsnapshot -c "$EXEC_DIR/rsnapshot.conf" $arg
 ./do_symlinks.sh
 
 # Output some stats
+echo ""
 echo "Start time: $starttime"
 echo "End time:   `date`"
 echo ""
