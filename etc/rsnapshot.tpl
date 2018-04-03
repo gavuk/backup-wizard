@@ -139,7 +139,7 @@ lockfile	/var/run/{{hostname}}_rsnapshot.pid
 
 # ssh has no args passed by default, but you can specify some here.
 #
-ssh_args	-o BatchMode=yes
+#ssh_args	-o BatchMode=yes
 
 # Default arguments for the "du" program (for disk space reporting).
 # The GNU version of "du" is preferred. See the man page for more details.
