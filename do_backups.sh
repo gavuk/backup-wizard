@@ -8,7 +8,7 @@ thisdir=`dirname $0`
 arg="$1"
 
 # Write the master config file
-echo "" > "$EXEC_DIR/rsnapshot.conf"
+echo -e "ssh_args\t-o BatchMode=yes" > "$EXEC_DIR/rsnapshot.conf"
 
 # List all of the rsnapshot configs
 while read -r conf
