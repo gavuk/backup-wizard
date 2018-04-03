@@ -13,7 +13,7 @@ echo "" > "$EXEC_DIR/rsnapshot.conf"
 # List all of the rsnapshot configs
 while read -r conf
 do
-   echo -e "include_conf\t$conf"
+   echo -e "include_conf\t$conf" >> "$EXEC_DIR/rsnapshot.conf"
 done<<<"`find $EXEC_DIR/etc/ -iname '*.conf' -type f`"
 
 # Run rsnapshot
