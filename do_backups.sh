@@ -23,7 +23,7 @@ done<<<"`find $EXEC_DIR/etc/ -iname '*.conf' -type f`"
 rsnapshot -c "$EXEC_DIR/rsnapshot.conf" $arg
 
 # Sort out the symlinks
-./do_symlinks.sh
+$EXEC_DIR/do_symlinks.sh
 
 # Output some stats
 echo ""
