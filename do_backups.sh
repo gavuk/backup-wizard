@@ -11,7 +11,7 @@ starttime=`date`
 arg="$1"
 
 # Write the master config file
-echo -e "ssh_args\t-o BatchMode=yes" > "$EXEC_DIR/rsnapshot.conf"
+cat "$EXEC_DIR/rsnapshot.tpl" > "$EXEC_DIR/rsnapshot.conf"
 
 # List all of the rsnapshot configs
 while read -r conf
